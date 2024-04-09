@@ -1,12 +1,13 @@
 
 export const exerciseOption = {
-    method: 'GET',
-    url: 'https://gym-fit.p.rapidapi.com/exercises/exercise/41aeff91-79d7-4d73-883d-f61d117dc0d8',
-    headers: {
-      'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
-      'X-RapidAPI-Host': 'gym-fit.p.rapidapi.com'
-    }
-  };
+  method: 'GET',
+  url: 'https://work-out-api1.p.rapidapi.com/search',
+  params: {Muscles: 'biceps'},
+  headers: {
+    'X-RapidAPI-Key': 'fe741f606emshfd04311515f3ab9p1c995ejsn5fcd3b6d045d',
+    'X-RapidAPI-Host': 'work-out-api1.p.rapidapi.com'
+  }
+};
 
 export const fetchData = async (url, options) => {
     const response = await fetch(url, options);
