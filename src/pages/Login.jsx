@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -18,9 +18,19 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Your authentication logic here
-    alert('Login successful!');
-    // Redirect or do other actions as needed
+    
+    // Retrieve users from localStorage
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    
+    // Find the user
+    const user = users.find(u => u.username === formData.username && u.password === formData.password);
+    
+    if (user) {
+      alert("Login successful!");
+      window.location.href = 'Profile+' + formData.username
+    } else {
+      alert("Invalid credentials");
+    }
   };
 
   const togglePasswordVisibility = () => {
