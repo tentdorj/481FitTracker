@@ -2,6 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const [showResetPasswordModal, setShowResetPasswordModal] = useState(false);
+  const [resetFormData, setResetFormData] = useState({
+    userId: '',
+    email: '',
+    newPassword: '',
+    confirmPassword: ''
+  });
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -26,8 +33,11 @@ const Login = () => {
     const user = users.find(u => u.username === formData.username && u.password === formData.password);
     
     if (user) {
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('userToken', formData.username);
       alert("Login successful!");
-      window.location.href = 'Profile+' + formData.username
+      
+      window.location.href = 'Profile'
     } else {
       alert("Invalid credentials");
     }
@@ -116,7 +126,7 @@ const Login = () => {
             Sign Up
           </a>
           {' | '}
-          <a href="forgot_password" className="font-medium text-indigo-600 hover:text-indigo-500">
+          <a href="forgetpassword" className="font-medium text-indigo-600 hover:text-indigo-500">
             Forgot Password?
           </a>
         </div>
@@ -126,3 +136,4 @@ const Login = () => {
 };
 
 export default Login;
+ Login;
