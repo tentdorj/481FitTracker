@@ -47,7 +47,7 @@ const Nutrition = () => {
           component="h2"
           
           sx={{ 
-            mt: -25,  // margin top and bottom
+            mt: -13,  // margin top and bottom
             fontSize: '1.5rem',
            
           }}
@@ -63,7 +63,7 @@ const Nutrition = () => {
           }}
         >
           <FormControl fullWidth>
-            <Typography variant="body1" component="label" htmlFor="mealType" sx={{ mb: 1, textAlign: 'center' }}>
+            <Typography variant="body1" component="label" htmlFor="mealType" sx={{ mb: 0.5, textAlign: 'center' }}>
               Meal Type:
             </Typography>
             <Select
@@ -79,6 +79,28 @@ const Nutrition = () => {
               <MenuItem value="snack">Snack</MenuItem>
             </Select>
           </FormControl>
+          <Typography variant="body1" component="label" htmlFor="food-type" sx={{ mb: 1, textAlign: 'center', width: '100%' }}>
+            Food Type:
+          </Typography>
+            <TextField
+              fullWidth
+              id="food-type"
+              label=""
+              variant="outlined"
+              placeholder="Enter food type"
+              sx={{ mb: 2 }}
+            />
+            <Typography variant="body1" component="label" htmlFor="quantity" sx={{ mb: 1, textAlign: 'center', width: '100%' }}>
+            Quantity:
+          </Typography>
+            <TextField
+              fullWidth
+              id="quantity"
+              label=""
+              variant="outlined"
+              placeholder="Enter quantity in grams"
+              sx={{ mb: 2 }}
+            />
         </Box>
       </Box>
     </Box>
