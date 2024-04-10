@@ -90,7 +90,6 @@ const AddWorkoutForm = ({ addWorkout, selectedDate }) => { // Accept selectedDat
       sets,
       reps
     };
-    alert(`Adding workout for date: ${formattedDate}`);
     alert("Workout Successfully Added");
     addWorkout(newWorkout);
     // Reset form fields
