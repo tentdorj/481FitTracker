@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import Stack from '@mui/material/Stack';
 
+
 import Logo from '../assets/images/Logo.png'
 const Navbar = () => {
   return (
@@ -22,6 +23,9 @@ const Navbar = () => {
             '3px solid #FF2625'}}>Home</Link>
             <a href="#exercises" style={{ textDecoration:
             'none', color: '#3A1212'}}>Exercises</a>
+            <Link to="/calendar" style={{ textDecoration: 'none', color: '#3A1212' }}>Calendar</Link>
+            <Link to="/nutrition" style={{ textDecoration: 'none', color: '#3A1212' }}>Nutrition</Link>
+            <Link to="/profile" style={{ textDecoration: 'none', color: '#3A1212' }}>Profile</Link>
         </Stack>
     </Stack>
   )
