@@ -7,9 +7,10 @@ import Badge from '@mui/material/Badge';
 import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import CheckIcon from '@mui/icons-material/Check';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper as MuiPaper } from '@mui/material';
+import { format } from 'date-fns'; // Import format function
 
 // Placeholder for Calendar component
-const Calendar = () => {
+const Calendar = ({selectedDate, onDateChange}) => {
  const [value, setValue] = useState(new Date());
  const [highlightedDays, setHighlightedDays] = useState([1, 2, 13]);
 
@@ -18,9 +19,9 @@ const Calendar = () => {
       <StaticDatePicker
         variant='static'
         orientation='portrait'
-        value={value}
+        value={selectedDate}
         disableFuture
-        onChange={(newValue) => setValue(newValue)}
+        onChange={(newValue) => {  onDateChange(newValue);     }}
         renderInput={(params) => <TextField {...params} />}
         renderDay={(day, _value, DayComponentProps) => {
           const isSelected =
@@ -44,6 +45,9 @@ const Calendar = () => {
 
 // Updated WorkoutLog component to display "Sets" and "Reps"
 const WorkoutLog = ({ workouts }) => {
+    console.log(workouts); // This should log the updated workouts array
+  
+
  return (
     <TableContainer component={MuiPaper}>
       <Table>
@@ -71,21 +75,35 @@ const WorkoutLog = ({ workouts }) => {
 };
 
 // Updated AddWorkoutForm component to include "Sets" and "Reps"
-const AddWorkoutForm = () => {
- const [workoutName, setWorkoutName] = useState('');
- const [sets, setSets] = useState('');
- const [reps, setReps] = useState('');
+const AddWorkoutForm = ({ addWorkout, selectedDate }) => { // Accept selectedDate as prop
+  const [workoutName, setWorkoutName] = useState('');
+  const [sets, setSets] = useState('');
+  const [reps, setReps] = useState('');
 
- const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // Implement logic to add workout to the database
- };
+    const formattedDate = format(selectedDate, 'yyyy-MM-dd');
+    const newWorkout = {
+      id: Date.now(),
+      date: formattedDate,
+      name: workoutName,
+      sets,
+      reps
+    };
+    alert(`Adding workout for date: ${formattedDate}`);
+    alert("Workout Successfully Added");
+    addWorkout(newWorkout);
+    // Reset form fields
+    setWorkoutName('');
+    setSets('');
+    setReps('');
+  };
 
  return (
     <form onSubmit={handleSubmit}>
       <TextField label="Workout Name" value={workoutName} onChange={(e) => setWorkoutName(e.target.value)} />
-      <TextField label="Sets" value={sets} onChange={(e) => setSets(e.target.value)} />
-      <TextField label="Reps" value={reps} onChange={(e) => setReps(e.target.value)} />
+      <TextField label="Sets" type="number" value={sets} onChange={(e) => setSets(e.target.value)} />
+      <TextField label="Reps"  type="number" value={reps} onChange={(e) => setReps(e.target.value)} />
       <Button type="submit">Add Workout</Button>
     </form>
  );
@@ -93,12 +111,26 @@ const AddWorkoutForm = () => {
 
 const Dashboard = () => {
  // Placeholder for workouts data
+ const [selectedDate, setSelectedDate] = useState(new Date()); 
  const [workouts, setWorkouts] = useState([]);
+ const [highlightedDays, setHighlightedDays] = useState([]);
 
+ const handleDateChange = (newDate) => {
+  setSelectedDate(newDate);
+};
  // Fetch workouts data from your API
  useEffect(() => {
     // Implement fetch logic here
  }, []);
+  const addWorkout = (workout) => {
+    const newWorkouts = [...workouts, workout];
+    setWorkouts(newWorkouts);
+    setHighlightedDays(calculateHighlightedDays(newWorkouts));
+  };
+  const calculateHighlightedDays = (workouts) => {
+    return workouts.map(workout => new Date(workout.date).getDate());
+  };
+
 
  return (
     <Container maxWidth="lg">
@@ -120,7 +152,7 @@ const Dashboard = () => {
               <Typography variant="h6" component="h2">
                 Add New Workout
               </Typography>
-              <AddWorkoutForm />
+              <AddWorkoutForm addWorkout={addWorkout} selectedDate={selectedDate} />
             </Paper>
           </Grid>
           <Grid item xs={12}>
@@ -128,7 +160,7 @@ const Dashboard = () => {
               <Typography variant="h6" component="h2">
                 Workout Calendar
               </Typography>
-              <Calendar />
+              <Calendar selectedDate={selectedDate} onDateChange={handleDateChange} />
             </Paper>
           </Grid>
         </Grid>
