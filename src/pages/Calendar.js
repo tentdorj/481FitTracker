@@ -1,87 +1,140 @@
-import React from "react";
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button'; // Ensure Button is imported from MUI
+import React, { useState, useEffect } from 'react';
+import { Container, Typography, Box, Paper, Grid, Button, TextField } from '@mui/material';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+import Badge from '@mui/material/Badge';
+import { PickersDay } from '@mui/x-date-pickers/PickersDay';
+import CheckIcon from '@mui/icons-material/Check';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper as MuiPaper } from '@mui/material';
 
+// Placeholder for Calendar component
 const Calendar = () => {
-  const today = new Date();
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const todayString = today.toLocaleDateString('en-US', options);
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '40vh',
-      }}
-    >
-      <Typography
-        variant="h1"
-        component="h1"
-        sx={{
-          color: 'green',
-          fontWeight: 'bold',
-          fontSize: '3rem',
-          mt: 8, // Margin top
+ const [value, setValue] = useState(new Date());
+ const [highlightedDays, setHighlightedDays] = useState([1, 2, 13]);
+
+ return (
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <StaticDatePicker
+        variant='static'
+        orientation='portrait'
+        value={value}
+        disableFuture
+        onChange={(newValue) => setValue(newValue)}
+        renderInput={(params) => <TextField {...params} />}
+        renderDay={(day, _value, DayComponentProps) => {
+          const isSelected =
+            !DayComponentProps.outsideCurrentMonth &&
+            highlightedDays.indexOf(day.getDate()) >= 0;
+
+          return (
+            <Badge
+              key={day.toString()}
+              overlap='circular'
+              badgeContent={isSelected ? <CheckIcon color='red' /> : undefined}
+            >
+              <PickersDay {...DayComponentProps} />
+            </Badge>
+          );
         }}
-      >
-        Calendar
-      </Typography>
-      
-      <Box
-        sx={{
-          width: '85%', 
-          display: 'flex',
-          justifyContent: 'space-between', // Space between items
-          alignItems: 'center',
-          mt: 5, 
-          px: 4, // Padding on the sides
-        }}
-      >
-        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Typography
-            variant="h5"
-            component="h2"
-            sx={{
-              fontWeight: 'bold',
-              fontSize: 30,
-              
-            }}
-          >
-            Hello There!
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            minHeight: '6vh',
-            ml: 11,
-          }}
-         >
-        <Button variant="contained" color="primary" sx={{ mt: 8 }}> 
-          Weekly View
-        </Button>
-          
-        </Box>
-        
-        {/* Today's Date */}
-        <Typography
-          variant="h5"
-          component="h2"
-          sx={{
-            fontWeight: 'normal',
-          }}
-        >
-          {todayString}
-        </Typography>
-      </Box>
-    </Box>
-  );
+      />
+    </LocalizationProvider>
+ );
 };
 
-export default Calendar;
+// Updated WorkoutLog component to display "Sets" and "Reps"
+const WorkoutLog = ({ workouts }) => {
+ return (
+    <TableContainer component={MuiPaper}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Date</TableCell>
+            <TableCell>Workout</TableCell>
+            <TableCell>Sets</TableCell>
+            <TableCell>Reps</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {workouts.map((workout) => (
+            <TableRow key={workout.id}>
+              <TableCell>{workout.date}</TableCell>
+              <TableCell>{workout.name}</TableCell>
+              <TableCell>{workout.sets}</TableCell>
+              <TableCell>{workout.reps}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+ );
+};
+
+// Updated AddWorkoutForm component to include "Sets" and "Reps"
+const AddWorkoutForm = () => {
+ const [workoutName, setWorkoutName] = useState('');
+ const [sets, setSets] = useState('');
+ const [reps, setReps] = useState('');
+
+ const handleSubmit = (e) => {
+    e.preventDefault();
+    // Implement logic to add workout to the database
+ };
+
+ return (
+    <form onSubmit={handleSubmit}>
+      <TextField label="Workout Name" value={workoutName} onChange={(e) => setWorkoutName(e.target.value)} />
+      <TextField label="Sets" value={sets} onChange={(e) => setSets(e.target.value)} />
+      <TextField label="Reps" value={reps} onChange={(e) => setReps(e.target.value)} />
+      <Button type="submit">Add Workout</Button>
+    </form>
+ );
+};
+
+const Dashboard = () => {
+ // Placeholder for workouts data
+ const [workouts, setWorkouts] = useState([]);
+
+ // Fetch workouts data from your API
+ useEffect(() => {
+    // Implement fetch logic here
+ }, []);
+
+ return (
+    <Container maxWidth="lg">
+      <Box my={4}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Fitness Dashboard
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6}>
+            <Paper elevation={3} style={{ padding: '20px' }}>
+              <Typography variant="h6" component="h2">
+                Daily Activity
+              </Typography>
+              <WorkoutLog workouts={workouts} />
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Paper elevation={3} style={{ padding: '20px' }}>
+              <Typography variant="h6" component="h2">
+                Add New Workout
+              </Typography>
+              <AddWorkoutForm />
+            </Paper>
+          </Grid>
+          <Grid item xs={12}>
+            <Paper elevation={3} style={{ padding: '20px' }}>
+              <Typography variant="h6" component="h2">
+                Workout Calendar
+              </Typography>
+              <Calendar />
+            </Paper>
+          </Grid>
+        </Grid>
+      </Box>
+    </Container>
+ );
+};
+
+export default Dashboard;
