@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 const Login = () => {
@@ -9,10 +10,10 @@ const Login = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
+    setFormData({
+      ...formData,
       [name]: value
-    }));
+    });
   };
 
   const handleSubmit = (e) => {
@@ -23,96 +24,95 @@ const Login = () => {
   };
 
   const togglePasswordVisibility = () => {
-    setShowPassword(prevShowPassword => !prevShowPassword);
+    setShowPassword(!showPassword);
   };
 
-  return React.createElement('div', {
-    className: "min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-cover bg-center bg-no-repeat",
-    style: { backgroundImage: "url('picture/background.png')" }
-  }, [
-    React.createElement('h1', {
-      className: "text-3xl font-extrabold text-gray-900 text-center mb-8",
-      key: "h1"
-    }, 'Log In'),
-    React.createElement('form', {
-      onSubmit: handleSubmit,
-      className: "bg-white bg-opacity-80 rounded-lg px-8 pt-6 pb-8 mb-4 mx-auto w-full max-w-sm",
-      key: "form"
-    }, [
-      React.createElement('div', {
-        className: "mb-4",
-        key: "div-username"
-      }, [
-        React.createElement('label', {
-          htmlFor: "username",
-          className: "block text-sm font-medium text-gray-700",
-          key: "label-username"
-        }, 'Username:'),
-        React.createElement('input', {
-          id: "username",
-          name: "username",
-          type: "text",
-          autoComplete: "username",
-          required: true,
-          onChange: handleInputChange,
-          className: "appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-          key: "input-username"
-        })
-      ]),
-      React.createElement('div', {
-        className: "mb-6",
-        key: "div-password"
-      }, [
-        React.createElement('label', {
-          htmlFor: "password",
-          className: "block text-sm font-medium text-gray-700",
-          key: "label-password"
-        }, 'Password:'),
-        React.createElement('input', {
-          id: "password",
-          name: "password",
-          type: showPassword ? 'text' : 'password',
-          autoComplete: "current-password",
-          required: true,
-          onChange: handleInputChange,
-          className: "appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-          key: "input-password"
-        })
-      ]),
-      React.createElement('div', {
-        className: "mb-6",
-        key: "div-showPassword"
-      }, [
-        React.createElement('input', {
-          type: "checkbox",
-          id: "viewPassword",
-          onChange: togglePasswordVisibility,
-          className: "mr-2",
-          key: "input-viewPassword"
-        }),
-        React.createElement('label', {
-          htmlFor: "viewPassword",
-          className: "text-sm font-medium text-gray-700 cursor-pointer",
-          key: "label-viewPassword"
-        }, 'Show Password')
-      ]),
-      React.createElement('button', {
-        type: "submit",
-        className: "bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full",
-        key: "button"
-      }, 'Log In')
-    ]),
-    React.createElement('a', {
-      href: "signup",
-      className: "text-center text-sm text-gray-700 hover:text-gray-900",
-      key: "link-signup"
-    }, "Don't have an account? Sign Up"),
-    React.createElement('a', {
-      href: "forgot_password",
-      className: "text-center text-sm text-gray-700 hover:text-gray-900 mt-2",
-      key: "link-forgotPassword"
-    }, "Forgot Password?")
-  ]);
+  return (
+    <div
+      className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8"
+      style={{
+        backgroundImage: "linear-gradient(to right, #6DD5FA, #FF758C)",
+        fontFamily: "'Lato', sans-serif",
+      }}
+    >
+      <div
+        className="max-w-md w-full mx-auto"
+        style={{ backgroundColor: "rgba(255, 255, 255, 0.85)", borderRadius: '10px', padding: '20px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}
+      >
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Log In</h2>
+        <form onSubmit={handleSubmit} className="mt-8">
+          <div className="mb-4">
+            <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+              Username
+            </label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              autoComplete="username"
+              required
+              onChange={handleInputChange}
+              className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              style={{ marginTop: '4px', border: '1px solid #CBD5E0', borderRadius: '5px' }}
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type={showPassword ? 'text' : 'password'}
+              autoComplete="current-password"
+              required
+              onChange={handleInputChange}
+              className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              style={{ marginTop: '4px', border: '1px solid #CBD5E0', borderRadius: '5px' }}
+            />
+          </div>
+          <div className="mb-6">
+            <input
+              type="checkbox"
+              id="viewPassword"
+              onChange={togglePasswordVisibility}
+              className="mr-2"
+            />
+            <label htmlFor="viewPassword" className="text-sm font-medium text-gray-700">
+              Show Password
+            </label>
+          </div>
+          <button
+            type="submit"
+            style={{
+              backgroundColor: "#4FD1C5",
+              color: "white",
+              fontWeight: "bold",
+              padding: "15px",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+              transition: "background-color 0.2s",
+            }}
+            onMouseOver={({target}) => target.style.backgroundColor = "#2C7A7B"}
+            onMouseOut={({target}) => target.style.backgroundColor = "#4FD1C5"}
+          >
+            Log In
+          </button>
+        </form>
+        <div className="mt-6 text-center">
+          <a href="signup" className="font-medium text-indigo-600 hover:text-indigo-500">
+            Sign Up
+          </a>
+          {' | '}
+          <a href="forgot_password" className="font-medium text-indigo-600 hover:text-indigo-500">
+            Forgot Password?
+          </a>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Login;
