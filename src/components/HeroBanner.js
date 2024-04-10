@@ -23,14 +23,14 @@ const HeroBanner = () => {
       <Typography fontSize="22px" lineHeight="35px" mb={4}>
         Find Balance, Strength, and Confidence in Every Session
       </Typography>
-      <Button variant="contained" href ="#exercises" sx={{height: '40px', width: '120px', backgroundColor: "#FF2625", padding: '10px'}}
+      <Button variant="contained" href ="#exercises" sx={{height: '40px', width: '120px', backgroundColor: "#2e8b57", padding: '10px'}}
         Explore Exercises>
           Exercises
         
       </Button>
       <Typography 
       fontWeight={600}
-      color = "#FF2625"
+      color = "#3f704d"
       sx={{opacity: 0.1, display: {lg: 'block', xs: 'none'}
         }}
         fontSize="200px"

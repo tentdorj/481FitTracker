@@ -12,7 +12,7 @@ const ExerciseCard = ({ exercise }) => {
 
  return (
     <Box className="exercise-card" to={`/exercise/${exercise.id}`} sx={{ padding: '20px', border: '1px solid #ccc', borderRadius: '10px' }}>
-      <Typography variant="h4" mb="16px" sx={{ color: '#333', fontWeight: 'bold', fontSize: '20px' }}>{exercise.WorkOut}</Typography>
+      <Typography variant="h4" mb="16px" sx={{ color: '#3f704d', fontWeight: 'bold', fontSize: '20px' }}>{exercise.WorkOut}</Typography>
       <Typography variant="body1" mb="12px" sx={{ color: '#666', fontSize: '16px' }}>
         <strong>Equipment:</strong> {exercise['Equipment']}
       </Typography>
@@ -28,7 +28,7 @@ const ExerciseCard = ({ exercise }) => {
             sx={{
               background: '#ff2625',
               '&:hover': {
-                background: '#ff2625',
+                background: '#3f704d',
                 color: '#fff',
               },
             }}
@@ -38,7 +38,7 @@ const ExerciseCard = ({ exercise }) => {
             Open Video
           </Button>
           <Button
-            sx={{ color: '#fff', background: '#FCC757', borderRadius: '20px', textTransform: 'capitalize' }}
+            sx={{ color: '#fff', background: '#3f704d', borderRadius: '20px', textTransform: 'capitalize' }}
           >
             {exercise.Intensity_Level}
           </Button>
