@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import Nutrition from './pages/Nutrition';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Calender from './pages/Calender';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path ="/nutrition" element={<Nutrition/>}/>
         <Route path ="/signup" element={<Signup/>}/>
         <Route path ="/login" element={<Login/>}/>
+        <Route path ="/calender" element={<Calender/>}/>
 
     </Routes>
     <Footer />
