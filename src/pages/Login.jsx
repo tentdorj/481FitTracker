@@ -37,12 +37,12 @@ const Login = () => {
       localStorage.setItem('userToken', formData.username);
       alert("Login successful!");
       
-      window.location.href = 'Profile'
+      navigate('/profile');
     } else {
       alert("Invalid credentials");
     }
   };
-
+  const navigate = useNavigate();
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -122,11 +122,11 @@ const Login = () => {
           </button>
         </form>
         <div className="mt-6 text-center">
-          <a href="signup" className="font-medium text-indigo-600 hover:text-indigo-500">
+          <a onClick={() => navigate('/signup')} className="font-medium text-indigo-600 hover:text-indigo-500">
             Sign Up
           </a>
           {' | '}
-          <a href="forgetpassword" className="font-medium text-indigo-600 hover:text-indigo-500">
+          <a onClick={() => navigate('/forgetpassword')} className="font-medium text-indigo-600 hover:text-indigo-500">
             Forgot Password?
           </a>
         </div>
