@@ -9,6 +9,8 @@ import Nutrition from './pages/Nutrition';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Calendar from './pages/Calendar';
+import Forgetpassword from './pages/Forgetpassword';
+import Profile from './pages/Profile';
 
 const App = () => {
   return (
@@ -19,6 +21,8 @@ const App = () => {
         <Route path ="/nutrition" element={<Nutrition/>}/>
         <Route path ="/signup" element={<Signup/>}/>
         <Route path ="/login" element={<Login/>}/>
+        <Route path ="/profile" element={<Profile/>}/>
+        <Route path ="/forgetpassword" element={<Forgetpassword/>}/>
         <Route path ="/calendar" element={<Calendar/>}/>
 
     </Routes>
