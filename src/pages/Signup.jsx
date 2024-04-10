@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -19,13 +20,33 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { username, email, password, confirmPassword } = formData;
-    // Add your signup logic here
+
     if (password !== confirmPassword) {
-      alert('Passwords do not match!');
+      console.log("Passwords do not match.");
       return;
     }
-    alert('Signup successful!');
+
+    // Retrieve existing users from localStorage
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    // Check if the user already exists
+    const exists = users.some(user => user.username === username || user.email === email);
+
+    if (exists) {
+      alert("User already exists.");
+      return;
+    }
+
+    // Add new user to the array
+    users.push({ username, email, password }); // Ideally, you'd hash the password
+
+    // Save updated users array to localStorage
+    localStorage.setItem('users', JSON.stringify(users));
+
+    alert("Signup successful");
+    window.location.href = 'Login'
   };
+
 
   return (
     <div
