@@ -38,7 +38,7 @@ const Signup = () => {
     }
 
     // Add new user to the array
-    users.push({ username, email, password }); // Ideally, you'd hash the password
+    users.push({ username, email, password }); 
 
     // Save updated users array to localStorage
     localStorage.setItem('users', JSON.stringify(users));
