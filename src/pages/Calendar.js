@@ -10,7 +10,7 @@ const Calendar = () => {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '100vh',
+        minHeight: '10vh',
       }}
     >
       <Typography
