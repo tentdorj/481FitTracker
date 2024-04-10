@@ -16,7 +16,7 @@ const Signup = () => {
       [name]: value
     });
   };
-
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const { username, email, password, confirmPassword } = formData;
@@ -44,7 +44,7 @@ const Signup = () => {
     localStorage.setItem('users', JSON.stringify(users));
 
     alert("Signup successful");
-    window.location.href = 'Login'
+    navigate('/login');
   };
 
 
@@ -142,7 +142,7 @@ const Signup = () => {
           </button>
         </form>
         <div className="mt-6 text-center">
-          <a href="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+          <a onClick={() => navigate('/login')} className="font-medium text-indigo-600 hover:text-indigo-500">
             Already have an account? Log In
           </a>
         </div>
