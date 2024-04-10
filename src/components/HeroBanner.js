@@ -14,7 +14,7 @@ const HeroBanner = () => {
         p: '20px',
       }}
     >
-      <Typography color="#FF2625" fontWeight="600" fontSize="26px">
+      <Typography color="#3f704d" fontWeight="600" fontSize="26px">
         FitTracker
       </Typography>
       <Typography fontWeight={700} sx={{ fontSize: { lg: '44px', sm: '40px' } }} mb="23px" mt="30px">
@@ -23,8 +23,9 @@ const HeroBanner = () => {
       <Typography fontSize="22px" lineHeight="35px" mb={4}>
         Find Balance, Strength, and Confidence in Every Session
       </Typography>
-      <Button variant="contained" color="error" href ="#exercises" sx={{backgroundColor: "#FF2625", padding: '10px'}}
+      <Button variant="contained" href ="#exercises" sx={{height: '40px', width: '120px', backgroundColor: "#FF2625", padding: '10px'}}
         Explore Exercises>
+          Exercises
         
       </Button>
       <Typography 
