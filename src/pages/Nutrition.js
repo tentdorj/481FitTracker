@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 const Nutrition = () => {
   return (
     <Box
@@ -31,13 +32,13 @@ const Nutrition = () => {
       <Box
         sx={{
           width: '45%',
-          minHeight: '500px',
+          minHeight: '600px',
           backgroundColor: '#f2f2f2',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          borderRadius: '80px',
+          borderRadius: '20px',
           mt: 4, // margin top
           p: 2, // padding
         }}
@@ -49,6 +50,7 @@ const Nutrition = () => {
           sx={{ 
             mt: -13,  // margin top and bottom
             fontSize: '1.5rem',
+            fontWeight: 'bold',
            
           }}
         >
@@ -63,7 +65,7 @@ const Nutrition = () => {
           }}
         >
           <FormControl fullWidth>
-            <Typography variant="body1" component="label" htmlFor="mealType" sx={{ mb: 0.5, textAlign: 'center' }}>
+            <Typography variant="body1" component="label" htmlFor="mealType" sx={{ mb: 0.5, textAlign: 'center',mt: 5,minHeight:40}}>
               Meal Type:
             </Typography>
             <Select
@@ -71,8 +73,10 @@ const Nutrition = () => {
               id="mealType"
               defaultValue=""
               label="Meal Type"
-              sx={{ mb: 2 }} // margin bottom
+              sx={{ mb: 1 }} // margin bottom
+              
             >
+              
               <MenuItem value="breakfast">Breakfast</MenuItem>
               <MenuItem value="lunch">Lunch</MenuItem>
               <MenuItem value="dinner">Dinner</MenuItem>
@@ -101,6 +105,9 @@ const Nutrition = () => {
               placeholder="Enter quantity in grams"
               sx={{ mb: 2 }}
             />
+            <Button variant="contained" color="primary" sx={{ mt: 1 }}>
+            Add
+          </Button>
         </Box>
       </Box>
     </Box>
