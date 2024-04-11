@@ -7,10 +7,10 @@ https://nodejs.org/en/download
 ### 2. Required install
 After you installed node.js on youre machine
 
-Npm install --legacy-peer-deps
-npm install @mui/x-date-pickers
-npm install date-fns --save
-npm i date-fns
+### `npm install --legacy-peer-deps'
+### `npm install @mui/x-date-pickers'
+### `npm install date-fns --save'
+### `npm i date-fns'
 
 Is required to setup for the app
 
