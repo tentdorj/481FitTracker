@@ -6,13 +6,15 @@ https://nodejs.org/en/download
 
 ### 2. Required install
 After you installed node.js on youre machine
+Open Command prompt, or powershell on the app location
 
+type this four lines
 ### `npm install --legacy-peer-deps'
 ### `npm install @mui/x-date-pickers'
 ### `npm install date-fns --save'
 ### `npm i date-fns'
 
-Is required to setup for the app
+This is required to run the app
 
 
 # Getting Started with Create React App
