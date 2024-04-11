@@ -1,3 +1,20 @@
+#Required Setup
+
+### 1. install node.js
+To Run this project, you need to install node.js on your machine
+https://nodejs.org/en/download
+
+### 2. Required install
+After you installed node.js on youre machine
+
+Npm install --legacy-peer-deps
+npm install @mui/x-date-pickers
+npm install date-fns --save
+npm i date-fns
+
+Is required to setup for the app
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
