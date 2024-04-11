@@ -1,4 +1,4 @@
-#Required Setup
+# Required Setup
 
 ### 1. install node.js
 To Run this project, you need to install node.js on your machine
